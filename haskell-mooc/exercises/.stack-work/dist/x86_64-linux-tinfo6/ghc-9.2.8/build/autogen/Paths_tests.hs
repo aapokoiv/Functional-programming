@@ -42,12 +42,12 @@ getBinDir, getLibDir, getDynLibDir, getDataDir, getLibexecDir, getSysconfDir :: 
 
 
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
-bindir     = "/home/aapokoiv/koulu/haskell/haskell-mooc/exercises/.stack-work/install/x86_64-linux-tinfo6/87ededd6bbb800e7ba15aa267b43eb8a807f684dfec5f860717b25131ab16ecb/9.2.8/bin"
-libdir     = "/home/aapokoiv/koulu/haskell/haskell-mooc/exercises/.stack-work/install/x86_64-linux-tinfo6/87ededd6bbb800e7ba15aa267b43eb8a807f684dfec5f860717b25131ab16ecb/9.2.8/lib/x86_64-linux-ghc-9.2.8/tests-0.0.1-409rslOM85jJdNvoEvwqzu"
-dynlibdir  = "/home/aapokoiv/koulu/haskell/haskell-mooc/exercises/.stack-work/install/x86_64-linux-tinfo6/87ededd6bbb800e7ba15aa267b43eb8a807f684dfec5f860717b25131ab16ecb/9.2.8/lib/x86_64-linux-ghc-9.2.8"
-datadir    = "/home/aapokoiv/koulu/haskell/haskell-mooc/exercises/.stack-work/install/x86_64-linux-tinfo6/87ededd6bbb800e7ba15aa267b43eb8a807f684dfec5f860717b25131ab16ecb/9.2.8/share/x86_64-linux-ghc-9.2.8/tests-0.0.1"
-libexecdir = "/home/aapokoiv/koulu/haskell/haskell-mooc/exercises/.stack-work/install/x86_64-linux-tinfo6/87ededd6bbb800e7ba15aa267b43eb8a807f684dfec5f860717b25131ab16ecb/9.2.8/libexec/x86_64-linux-ghc-9.2.8/tests-0.0.1"
-sysconfdir = "/home/aapokoiv/koulu/haskell/haskell-mooc/exercises/.stack-work/install/x86_64-linux-tinfo6/87ededd6bbb800e7ba15aa267b43eb8a807f684dfec5f860717b25131ab16ecb/9.2.8/etc"
+bindir     = "/home/aapokoiv/koulu/Functional-programming/haskell-mooc/exercises/.stack-work/install/x86_64-linux-tinfo6/87ededd6bbb800e7ba15aa267b43eb8a807f684dfec5f860717b25131ab16ecb/9.2.8/bin"
+libdir     = "/home/aapokoiv/koulu/Functional-programming/haskell-mooc/exercises/.stack-work/install/x86_64-linux-tinfo6/87ededd6bbb800e7ba15aa267b43eb8a807f684dfec5f860717b25131ab16ecb/9.2.8/lib/x86_64-linux-ghc-9.2.8/tests-0.0.1-409rslOM85jJdNvoEvwqzu"
+dynlibdir  = "/home/aapokoiv/koulu/Functional-programming/haskell-mooc/exercises/.stack-work/install/x86_64-linux-tinfo6/87ededd6bbb800e7ba15aa267b43eb8a807f684dfec5f860717b25131ab16ecb/9.2.8/lib/x86_64-linux-ghc-9.2.8"
+datadir    = "/home/aapokoiv/koulu/Functional-programming/haskell-mooc/exercises/.stack-work/install/x86_64-linux-tinfo6/87ededd6bbb800e7ba15aa267b43eb8a807f684dfec5f860717b25131ab16ecb/9.2.8/share/x86_64-linux-ghc-9.2.8/tests-0.0.1"
+libexecdir = "/home/aapokoiv/koulu/Functional-programming/haskell-mooc/exercises/.stack-work/install/x86_64-linux-tinfo6/87ededd6bbb800e7ba15aa267b43eb8a807f684dfec5f860717b25131ab16ecb/9.2.8/libexec/x86_64-linux-ghc-9.2.8/tests-0.0.1"
+sysconfdir = "/home/aapokoiv/koulu/Functional-programming/haskell-mooc/exercises/.stack-work/install/x86_64-linux-tinfo6/87ededd6bbb800e7ba15aa267b43eb8a807f684dfec5f860717b25131ab16ecb/9.2.8/etc"
 
 getBinDir     = catchIO (getEnv "tests_bindir")     (\_ -> return bindir)
 getLibDir     = catchIO (getEnv "tests_libdir")     (\_ -> return libdir)
