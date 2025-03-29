@@ -21,10 +21,10 @@ import Mooc.Todo
 -- Ex 1: define variables one and two. They should have type Int and
 -- values 1 and 2, respectively.
 
-one :: Integer
+one :: Int
 one = 1
 
-two :: Integer
+two :: Int
 two = 2
 
 ------------------------------------------------------------------------------
@@ -93,8 +93,8 @@ checkPassword _ = "ACCESS DENIED!"
 -- in grams, and returns the cost in credits.
 
 postagePrice :: Integer -> Integer
-postagePrice x = if x < 500 then 250 
-    else if x <= 5000 then (300 + x - 500) else 6000
+postagePrice x = if x <= 500 then 250 
+    else if x <= 5000 then (x + 300) else 6000
 
 ------------------------------------------------------------------------------
 -- Ex 8: define a function isZero that returns True if it is given an
@@ -114,8 +114,8 @@ isZero _ = False
 -- computes the sum 1+2+...+n
 
 sumTo :: Integer -> Integer
-sumto 0 = 0
-sumTo n = 0 + sumTo (n-1)
+sumTo 0 = 0
+sumTo n = n + sumTo (n-1)
 
 
 ------------------------------------------------------------------------------
@@ -123,7 +123,9 @@ sumTo n = 0 + sumTo (n-1)
 -- Use recursion.
 
 power :: Integer -> Integer -> Integer
-power n k = n^k
+power n 0 = 1
+power n 1 = n
+power n k = n * power n (k-1)
 
 
 ------------------------------------------------------------------------------
