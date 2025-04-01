@@ -32,7 +32,7 @@ years = [1982, 2004, 2020]
 -- Hint! remember the take and drop functions.
 
 takeFinal :: Int -> [a] -> [a]
-takeFinal n xs = if length xs < n then xs else drop n xs
+takeFinal n xs = if length xs < n then xs else drop (length xs - n) xs
 
 ------------------------------------------------------------------------------
 -- Ex 3: Update an element at a certain index in a list. More
@@ -94,7 +94,7 @@ isPalindrome str = str == reverse str
 palindromify :: String -> String
 palindromify s = if s == reverse s 
     then s 
-    else tail x where
+    else palindromify (tail x) where
         x = init s
 
 ------------------------------------------------------------------------------
@@ -138,7 +138,11 @@ greet first (Just last) = "Hello, " ++ first ++ " " ++ last ++ "!"
 --   safeIndex ["a","b","c"] (-1)  ==> Nothing
 
 safeIndex :: [a] -> Int -> Maybe a
-safeIndex xs i = todo
+safeIndex xs i = if (length xs - 1) < i
+    then Nothing
+    else if i < 0
+        then Nothing
+        else Just (xs !! i)
 
 ------------------------------------------------------------------------------
 -- Ex 10: another variant of safe division. This time you should use
@@ -149,7 +153,8 @@ safeIndex xs i = todo
 --   eitherDiv 4 0   ==> Left "4/0"
 
 eitherDiv :: Integer -> Integer -> Either String Integer
-eitherDiv x y = todo
+eitherDiv x 0 = Left (show x ++ "/0")
+eitherDiv x y = Right (div x y)
 
 ------------------------------------------------------------------------------
 -- Ex 11: implement the function addEithers, which combines two values of type
@@ -166,4 +171,6 @@ eitherDiv x y = todo
 --   addEithers (Left "boom") (Left "fail") ==> Left "boom"
 
 addEithers :: Either String Int -> Either String Int -> Either String Int
-addEithers a b = todo
+addEithers (Left i) b = Left i
+addEithers a (Left i) = Left i
+addEithers (Right a) (Right b) = Right (a+b)
