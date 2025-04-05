@@ -40,7 +40,8 @@ maxBy measure a b = if measure a > measure b then a else b
 --   mapMaybe length (Just "abc") ==> Just 3
 
 mapMaybe :: (a -> b) -> Maybe a -> Maybe b
-mapMaybe f x = if x != Nothing then Just (map f (Just x)) else Nothing
+mapMaybe _ Nothing = Nothing
+mapMaybe x (Just y) = Just (map x y)
 
 ------------------------------------------------------------------------------
 -- Ex 3: implement the function mapMaybe2 that works like mapMaybe
@@ -193,6 +194,8 @@ joinToLength = todo
 --   [1,2,3] +|+ [4,5,6]  ==> [1,4]
 --   [] +|+ [True]        ==> [True]
 --   [] +|+ []            ==> []
+
+
 
 
 ------------------------------------------------------------------------------
