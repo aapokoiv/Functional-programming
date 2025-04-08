@@ -41,7 +41,7 @@ maxBy measure a b = if measure a > measure b then a else b
 
 mapMaybe :: (a -> b) -> Maybe a -> Maybe b
 mapMaybe _ Nothing = Nothing
-mapMaybe x (Just y) = Just (map x y)
+mapMaybe x (Just y) = Just (x y)
 
 ------------------------------------------------------------------------------
 -- Ex 3: implement the function mapMaybe2 that works like mapMaybe
@@ -55,7 +55,9 @@ mapMaybe x (Just y) = Just (map x y)
 --   mapMaybe2 div (Just 6) Nothing   ==>  Nothing
 
 mapMaybe2 :: (a -> b -> c) -> Maybe a -> Maybe b -> Maybe c
-mapMaybe2 f x y = todo
+mapMaybe2 f Nothing _ = Nothing
+mapMaybe2 f _ Nothing = Nothing
+mapMaybe2 f (Just x) (Just y) = Just (f x y)
 
 ------------------------------------------------------------------------------
 -- Ex 4: define the functions firstHalf and palindrome so that
@@ -77,9 +79,13 @@ mapMaybe2 f x y = todo
 palindromeHalfs :: [String] -> [String]
 palindromeHalfs xs = map firstHalf (filter palindrome xs)
 
-firstHalf = todo
+firstHalf :: String -> String
+firstHalf xs = if even (length xs)
+    then take (div (length xs) 2) xs
+    else take ((div (length xs) 2) + 1) xs
 
-palindrome = todo
+palindrome :: String -> Bool
+palindrome xs = xs == reverse xs
 
 ------------------------------------------------------------------------------
 -- Ex 5: Implement a function capitalize that takes in a string and
@@ -97,7 +103,10 @@ palindrome = todo
 --   capitalize "goodbye cruel world" ==> "Goodbye Cruel World"
 
 capitalize :: String -> String
-capitalize = todo
+capitalize str = unwords (map capitalizeFirst (words str))
+
+capitalizeFirst :: String -> String
+capitalizeFirst str = [toUpper (head str)] ++ tail str
 
 ------------------------------------------------------------------------------
 -- Ex 6: powers k max should return all the powers of k that are less
@@ -114,7 +123,8 @@ capitalize = todo
 --   * the function takeWhile
 
 powers :: Int -> Int -> [Int]
-powers k max = todo
+powers k max = takeWhile (<= max) (powers' k)
+powers' k = 1 : map (* k) (powers' k)
 
 ------------------------------------------------------------------------------
 -- Ex 7: implement a functional while loop. While should be a function
