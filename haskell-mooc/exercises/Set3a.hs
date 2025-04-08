@@ -271,9 +271,8 @@ multiCompose fs x = multiCompose (init fs) (last fs x)
 --   multiApp id [head, (!!2), last] "axbxc" ==> ['a','b','c'] i.e. "abc"
 --   multiApp sum [head, (!!2), last] [1,9,2,9,3] ==> 6
 
-
-multiApp f [] x = f x
-multiApp f (g:gs) x = g x : multiApp f gs x
+multiApp :: ([a] -> b) -> [c -> a] -> c -> b
+multiApp f gs x = f (map ($ x) gs)
 
 ------------------------------------------------------------------------------
 -- Ex 14: in this exercise you get to implement an interpreter for a
@@ -309,3 +308,4 @@ multiApp f (g:gs) x = g x : multiApp f gs x
 
 interpreter :: [String] -> [String]
 interpreter commands = todo
+
