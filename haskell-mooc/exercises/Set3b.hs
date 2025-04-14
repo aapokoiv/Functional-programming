@@ -50,7 +50,16 @@ buildList start count end = start : buildList start (count-1) end
 -- Ps. you'll probably need a recursive helper function
 
 sums :: Int -> [Int]
-sums i = todo
+
+sums 0 = []
+sums i = go [] (sumsh i)
+    where
+        go new [] = new
+        go new (x:xs) = go (x:new) xs
+sumsh 0 = []
+sumsh i = sums' i : sumsh (i-1)
+sums' 1 = 1
+sums' i = i + sums' (i-1)
 
 
 ------------------------------------------------------------------------------
@@ -117,8 +126,23 @@ sorted (x:y:xs) = if x <= y then sorted (y:xs) else False
 --
 -- Use pattern matching and recursion (and the list constructors : and [])
 
+-- [ad 0 (x:xs)]
+
 sumsOf :: [Int] -> [Int]
-sumsOf xs = todo
+
+sumsOf [] = []
+sumsOf (x:xs) = rev (sumsOf' (rev (x:xs)))
+
+sumsOf' [] = []
+sumsOf' (x:xs) = ad 0 (x:xs) : sumsOf' xs
+
+rev (x:xs) = go [] (x:xs)
+    where
+        go new [] = new
+        go new (x:xs) = go (x:new) xs
+
+ad summ [] = summ
+ad summ (x:xs) = ad (summ + x) xs
 
 ------------------------------------------------------------------------------
 -- Ex 7: implement the function merge that merges two sorted lists of
@@ -175,7 +199,11 @@ mymaximum bigger initial (x:xs) | bigger x initial = mymaximum bigger x xs
 -- Use recursion and pattern matching. Do not use any library functions.
 
 map2 :: (a -> b -> c) -> [a] -> [b] -> [c]
-map2 f as bs = todo
+map2 f [] _ = []
+map2 f _ [] = []
+map2 f (a:as) [b] = [f a b]
+map2 f [a] (b:bs) = [f a b] 
+map2 f (a:as) (b:bs) = f a b : map2 f as bs
 
 ------------------------------------------------------------------------------
 -- Ex 10: implement the function maybeMap, which works a bit like a
